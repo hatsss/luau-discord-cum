@@ -27,7 +27,7 @@ function Discord:Start(Token, Intents)
     end
     Payload = HttpService:JSONEncode(Payload)
 
-    Discord.WebSocket = syn.websocket.connect('wss://gateway.discord.gg/?v=10&encoding=json')
+    Discord.WebSocket = websocket.connect('wss://gateway.discord.gg/?v=10&encoding=json')
     Discord.WebSocket:Send(Payload)
     coroutine.wrap(function()
         while true do
@@ -72,7 +72,7 @@ function Discord:Send(Endpoint, Method, Body)
         Data.Headers['Content-Type'] = 'application/json'
         Data.Body = HttpService:JSONEncode(Body)
     end
-    local Body = syn.request(Data).Body
+    local Body = request(Data).Body
     pcall(function()
         Body = HttpService:JSONDecode(Body)
     end)
