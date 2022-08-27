@@ -27,7 +27,7 @@ function Discord:Start(Token, Intents)
     end
     Payload = HttpService:JSONEncode(Payload)
 
-    Discord.WebSocket = syn.websocket.connect('ws://gateway.discord.gg/?v=10&encoding=json')
+    Discord.WebSocket = syn.websocket.connect('wss://gateway.discord.gg/?v=10&encoding=json')
     Discord.WebSocket:Send(Payload)
     coroutine.wrap(function()
         while true do
